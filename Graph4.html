@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/> 
+    <title>Graph4</title>
+</head>
+<style>
+    .container
+    {
+        width: 500px;
+        height: 500px;
+    }
+
+</style>
+<body>
+    <div class="container">
+        <canvas id="bar-chart" ></canvas>
+        <hr class="mt-5">
+        <div class="text-center">
+            <input type="button" class="btn btn-primary" value="Style Chart" onclick="handleClick()" id="btn">
+        </div>
+        
+    </div>
+    <script>
+      
+        Chart.defaults.global.defaultFontFamily='Lato';
+        Chart.defaults.global.defaultFontSize=18;
+        
+        var chart=new Chart(document.getElementById("bar-chart"), {
+            type:'doughnut',
+            data: {
+                labels: ['Shirts', 'Pants', 'Trousers', 'Lehenga-choli', 'Blazers'],
+                datasets: [{    
+                    data: [10, 20, 30, 40, 50],
+                    backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                    borderWidth: 1,
+                    hoverBorderWidth:3
+                }]
+            },
+            options: {
+                
+                title:{
+                    display:true,
+                    text:'Product based on category',
+                    fontSize:25,
+                },
+            }
+        });
+        function handleClick()
+        {
+           
+            var btn=document.getElementById('btn');
+            if(btn.value=='Style Chart')
+            {
+                btn.value="Product Chart";
+                chart.data.labels=["Casual",'Formal','Party wear','Traditional','Nightwear'];
+                chart.data.datasets[0].data=[10,15,20,25,30]
+                chart.options.title.text="Product based on Styles"
+                chart.update();
+            }
+            else
+            {
+                btn.value="Style Chart";
+                chart.data.labels=['Shirts', 'Pants', 'Trousers', 'Lehenga-choli', 'Blazers'];
+                chart.data.datasets[0].data= [10, 20, 30, 40, 50];
+                chart.options.title.text="Product based on category"
+                chart.update();
+            }
+            console.log(chart.data.labels)
+            console.log(chart.options.title.text)
+        }
+        
+    </script>
+</body>
+</html>
